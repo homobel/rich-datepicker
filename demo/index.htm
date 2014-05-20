@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Rich Datepicker</title>
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../sources/css/datapicker.css" />
+		<script type="text/javascript" src="../vendors/jquery.js"></script>
+		<script type="text/javascript" src="../vendors/jquery-ui.js"></script>
+		<script type="text/javascript" src="../vendors/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="../sources/js/rich-datepicker.js"></script>
+		<script type="text/javascript">
+			(function($) {
+				$(function() {
+					$('.rich-datepicker-input').first().richDatepicker();
+					$('.rich-datepicker-input').last().richDatepicker({
+						position: 'top',
+						i18n: {
+							days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+							months: [
+								'Январь',
+								'Февраль',
+								'Март',
+								'Апрель',
+								'Май',
+								'Июнь',
+								'Июль',
+								'Август',
+								'Сентябрь',
+								'Октябрь',
+								'Ноябрь',
+								'Декабрь'
+							]
+						}
+					});
+				});
+			})(jQuery);
+		</script>
+	</head>
+	<body>
+		<header>
+			<div class="centriod">
+				<h1>Rich Datepicker</h1>
+				<span>by Archy Sharp</span>
+			</div>
+		</header>
+		<div class="centriod">
+			<input class="rich-datepicker-input" type="text" />
+			<article>
+				<h2>Features</h2>
+				<ul>
+					<li>Infoscroller with  months &amp; years</li>
+					<li>Date autocomplete</li>
+					<li>CSS editable</li>
+					<li>Ready for i18n</li>
+				</ul>
+				<h2>jQuery UI dependances</h2>
+				<ul>
+					<li>Draggable</li>
+					<li>Mouse</li>
+					<li>Widget</li>
+					<li>Core</li>
+				</ul>
+				<h2>Usage</h2>
+				<h3>Code in head</h3>
+				<pre>
+					<code>
+	&lt;link rel="stylesheet" type="text/css" href="css/datapicker.css" /&gt;
+	&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="js/jquery-ui.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="js/jquery.mousewheel.min.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="js/rich-datepicker.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript"&gt;
+		(function($) {
+			(function($) {
+				$(function() {
+
+					// simple
+					$('.rich-datepicker-input').first().richDatepicker();
+
+					// custom
+					$('.rich-datepicker-input').last().richDatepicker({
+						position: 'top',
+						i18n: {
+							days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+							months: [
+								'Январь',
+								'Февраль',
+								'Март',
+								'Апрель',
+								'Май',
+								'Июнь',
+								'Июль',
+								'Август',
+								'Сентябрь',
+								'Октябрь',
+								'Ноябрь',
+								'Декабрь'
+							]
+						}
+					});
+
+				});
+			})(jQuery);
+		})(jQuery);
+	&lt;/script&gt;
+					</code>
+				</pre>
+				<h3>Position</h3>
+				<p>There are 2 built in positions: bottom(default) and top. You can set your own properties via class and proper argument like this:</p>
+				<pre>
+					<code>
+	// JS
+	$('.rich-datepicker-input').first().richDatepicker({position: 'abc'});
+
+	// CSS
+	.position-abc .rich-datepicker {...}
+					</code>
+				</pre>
+				<h3>Methods</h3>
+				Date: <strong>7 February 2012</strong>
+				<pre>
+					<code>
+	$('input').data('date').val(); // [7, 2, 2012]
+	$('input').data('date').textVal(); // "7 February 2012"
+	$('input').data('date').val(1,1,2011); // $('input').data('date').val(); -> [1, 1, 2011]
+					</code>
+				</pre>
+				<h3>Events</h3>
+				Datapicker input emits 'datachanged' event each time day, month or year changed.
+			</article>
+			<input class="rich-datepicker-input top" type="text" />
+		</div>
+	</body>
+</html>

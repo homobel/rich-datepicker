@@ -1,0 +1,49 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font: normal 15px Arial;
+	color: #999;
+}
+
+header {
+	margin: 30px 0;
+	padding: 30px;
+}
+
+.centriod {
+	width: 960px;
+	margin: 0 auto;
+	padding: 40px 0;
+}
+
+pre {
+	width: 100%;
+	color: #343434;
+	display: block;
+	margin-bottom: 12px;
+	padding: 10px 0 10px 10px;
+	position: relative;
+	white-space: pre;
+	border: 1px dotted #b4b4b4;
+	font: 13px/18px Consolas,"Courier New",Courier,monospace;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: Arial;
+}
+
+h1 {
+	font-size: 36px;
+	text-transform: uppercase;
+}
+
+h2 {
+	padding: 20px 0;
+}
+
+article {
+	padding-bottom: 40px;
+}
+
+.rich-datepicker-wrap {font-size: 12px; color: #000;}
