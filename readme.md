@@ -3,6 +3,7 @@
 by Archy Sharp
 
 My 2011 year work may be helpful for somebody, cause it's still looks pretty :)
+
 However code written in old fashion style.
 
 [http://homobel.org/examples/plugins/rich-datepicker/demo/index.htm](http://homobel.org/examples/plugins/rich-datepicker/demo/index.htm)
