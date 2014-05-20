@@ -2,7 +2,7 @@
 # Rich date picker
 by Archy Sharp
 
-My 2011 year work may be helpful for somebody, cause it's still looks pretty :)
+My 2011 year work may be helpful for somebody, cause it still looks pretty :)
 
 However code written in old fashion style.
 
