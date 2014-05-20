@@ -34,7 +34,7 @@ However code written in old fashion style.
 	<script type="text/javascript">
 		(function($) {
 			$(function() {
-				$('.rich-datepicker-input').first().richDatepicker();
+				$('.rich-datepicker-input').richDatepicker();
 			});
 		})(jQuery);
 	</script>

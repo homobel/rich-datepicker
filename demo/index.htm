@@ -72,36 +72,11 @@
 	&lt;script type="text/javascript" src="js/rich-datepicker.js"&gt;&lt;/script&gt;
 	&lt;script type="text/javascript"&gt;
 		(function($) {
-			(function($) {
-				$(function() {
+			$(function() {
 
-					// simple
-					$('.rich-datepicker-input').first().richDatepicker();
+				$('.rich-datepicker-input').richDatepicker();
 
-					// custom
-					$('.rich-datepicker-input').last().richDatepicker({
-						position: 'top',
-						i18n: {
-							days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-							months: [
-								'Январь',
-								'Февраль',
-								'Март',
-								'Апрель',
-								'Май',
-								'Июнь',
-								'Июль',
-								'Август',
-								'Сентябрь',
-								'Октябрь',
-								'Ноябрь',
-								'Декабрь'
-							]
-						}
-					});
-
-				});
-			})(jQuery);
+			});
 		})(jQuery);
 	&lt;/script&gt;
 					</code>
