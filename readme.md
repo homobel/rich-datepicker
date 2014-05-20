@@ -2,9 +2,7 @@
 # Rich date picker
 by Archy Sharp
 
-My 2011 year work may be helpful for somebody, cause it still looks pretty :)
-
-However code written in old fashion style.
+Date picker was written in 2011, but it still looks pretty :). However code written in old fashion style.
 
 [http://homobel.org/examples/plugins/rich-datepicker/demo/index.htm](http://homobel.org/examples/plugins/rich-datepicker/demo/index.htm)
 
