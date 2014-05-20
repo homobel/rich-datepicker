@@ -33,36 +33,9 @@ However code written in old fashion style.
 	<script type="text/javascript" src="js/rich-datepicker.js"></script>
 	<script type="text/javascript">
 		(function($) {
-			(function($) {
-				$(function() {
-
-					// simple
-					$('.rich-datepicker-input').first().richDatepicker();
-
-					// custom
-					$('.rich-datepicker-input').last().richDatepicker({
-						position: 'top',
-						i18n: {
-							days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-							months: [
-								'Январь',
-								'Февраль',
-								'Март',
-								'Апрель',
-								'Май',
-								'Июнь',
-								'Июль',
-								'Август',
-								'Сентябрь',
-								'Октябрь',
-								'Ноябрь',
-								'Декабрь'
-							]
-						}
-					});
-
-				});
-			})(jQuery);
+			$(function() {
+				$('.rich-datepicker-input').first().richDatepicker();
+			});
 		})(jQuery);
 	</script>
 
