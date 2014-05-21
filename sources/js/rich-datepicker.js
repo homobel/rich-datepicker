@@ -24,8 +24,8 @@
 			'We',
 			'Th',
 			'Fr',
-			'Su',
-			'Sa'
+			'Sa',
+			'Su'
 		],
 
 		now = new Date(),
