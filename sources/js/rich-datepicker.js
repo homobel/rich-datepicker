@@ -19,14 +19,17 @@
 		],
 
 		days = [
+			'Su',
 			'Mo',
 			'Tu',
 			'We',
 			'Th',
 			'Fr',
-			'Sa',
-			'Su'
+			'Sa'
 		],
+		weekends = [0, 6],
+
+		cache,
 
 		now = new Date(),
 		currentYear = now.getFullYear(),
@@ -55,57 +58,85 @@
 
 		// html builder
 
+		this.getCalendarHTML = function(year) {
+	
+			var	html = '<div class="year-wrap">',
+				date = new Date(year, 0, 1),
+
+				months = this.options.l10n.months,
+				monday = this.options.monday,
+				shift = monday ? 1 : 0,
+
+				monthCounter = -1;
+
+			while(date.getFullYear() == year) {
+	
+				var	month = date.getMonth(),
+					day = date.getDay(),
+					dayOfMonth = date.getDate();
+
+				if(monthCounter != month) {
+					// close days
+					if(month > 0) {
+						html += '</ul></div>';
+					}
+					// month title
+					html += '<div class="month-wrap"><strong>' + months[month] + '</strong><ul>';
+					// space tag
+					if(day) {
+						html += '<li class="size-' + (day - shift) + '"></li>';
+					}
+					else if (monday) {
+						html += '<li class="size-6"></li>';
+					}
+					++monthCounter;
+				}
+	
+				var restDay = ~weekends.indexOf(day) ? ' rest-day' : '';
+				html += '<li class="day' + restDay + '">' + dayOfMonth + '</li>';
+
+				date.setMilliseconds(date.getMilliseconds()+dayLength);
+			}
+	
+			html += '</ul></div></div>';
+	
+			return html;
+		};
+
+		this.getDaysHTML = function(days) {
+
+			var html = '',
+				weekends = this.options.weekends;
+
+			$.each(days, function(i, c) {
+				if (~weekends.indexOf(i)) {
+					html += '<li class="rest-day">' + days[i] + '</li>';
+				}
+				else {
+					html += '<li>' + days[i] + '</li>';
+				}
+			});
+
+			return html;
+
+		};
+
 		this.datepickerHTML = function() {
 
 			var calendarHTML = '',
-				cmonths = this.options.i18n.months,
-				cdays = this.options.i18n.days;
+				months = this.options.l10n.months,
+				days = this.options.l10n.days,
+				that = this;
 
-			function getCalendar(year) {
-		
-				var	calendar = '<div class="year-wrap">',
-					date = new Date(year, 0, 1),
-					monthCounter = -1;
-		
-				while(date.getFullYear() == year) {
-		
-					var	month = date.getMonth(),
-						day = date.getDay(),
-						dayOfMonth = date.getDate();
-
-					day = (day)?day:7;
-		
-					if(monthCounter != month) {
-						if(month > 0) {
-							calendar += '</ul></div>';
-						}
-		
-						calendar += '<div class="month-wrap"><strong>'+cmonths[month]+'</strong><ul>';
-		
-						if(day > 1) {
-							calendar += '<li class="size-'+day+'"></li>';
-						}
-						++monthCounter;
-					}
-		
-					var restDay = (day == 6 || day == 7)?' rest-day':'';
-					calendar += '<li class="day'+restDay+'">'+dayOfMonth+'</li>';
-		
-					date.setMilliseconds(date.getMilliseconds()+dayLength);
-				}
-		
-				calendar += '</ul></div></div>';
-		
-				return calendar;
-			}
-
-			$.each(years, function(i, c) {calendarHTML += getCalendar(c);});
+			$.each(years, function(i, c) {
+				calendarHTML += that.getCalendarHTML(c);
+			});
 
 			var	monthList = '<ul>',
 				yearsList = '<ul>';
 
 			for(var i = 0; i < 12; i++) {
-				monthList += '<li>' + cmonths[i] + '</li>';
+				monthList += '<li>' + months[i] + '</li>';
 				yearsList += '<li>' + years[i] + '</li>';
 			}
 
@@ -113,26 +144,18 @@
 			yearsList += '</ul>';
 		
 			return	'<div class="tooltip"></div>' +
-					'<div class="rich-datepicker">' +
-						'<ul class="days">' +
-							'<li>' + cdays[0] + '</li>' +
-							'<li>' + cdays[1] + '</li>' +
-							'<li>' + cdays[2] + '</li>' +
-							'<li>' + cdays[3] + '</li>' +
-							'<li>' + cdays[4] + '</li>' +
-							'<li class="rest-day">' + cdays[5] + '</li>' +
-							'<li class="rest-day">' + cdays[6] + '</li>' +
-						'</ul>' +
-						'<div class="calendar">'+calendarHTML+'</div>' +
-						'<div class="month-picker"><div class="draggable-area"></div><div class="bg-area gradient1"></div>'+monthList+'</div>' +
-						'<div class="year-picker"><div class="draggable-area"></div><div class="bg-area gradient1"></div>'+yearsList+'</div>' +
+					'<div class="rich-datepicker-body">' +
+						'<ul class="days">' + this.getDaysHTML(days) + '</ul>' +
+						'<div class="calendar">' + calendarHTML + '</div>' +
+						'<div class="month-picker"><div class="draggable-area"></div><div class="bg-area gradient1"></div>' + monthList + '</div>' +
+						'<div class="year-picker"><div class="draggable-area"></div><div class="bg-area gradient1"></div>' + yearsList + '</div>' +
 					'</div>';
 		};
 
 		// value methods
 
 		this.textVal = function() {
-			return this.date + ' ' + this.options.i18n.months[this.month] + ' ' + this.year;
+			return this.date + ' ' + this.options.l10n.months[this.month] + ' ' + this.year;
 		};
 
 		this.val = function(d, m, y, dontup) {
@@ -155,7 +178,7 @@
 				}
 				if(m !== undefined) {
 					if(typeof m == 'string') {
-						var position = $.inArray(m, this.options.i18n.months);
+						var position = $.inArray(m, this.options.l10n.months);
 						if(~position) {this.setMonth(position);}
 					}
 					else {
@@ -389,8 +412,8 @@
 				m = (m)?m[0]:m;
 				d = (d)?+d[0]:d;
 	
-				for(var i = 0; i < _this.options.i18n.months.length; i++) {
-					if(~_this.options.i18n.months[i].search(new RegExp('^'+m, 'i')) && _this.options.i18n.months[_this.month] != m) {
+				for(var i = 0; i < _this.options.l10n.months.length; i++) {
+					if(~_this.options.l10n.months[i].search(new RegExp('^'+m, 'i')) && _this.options.l10n.months[_this.month] != m) {
 						M = i;
 						//m = undefined;
 						break;
@@ -400,7 +423,7 @@
 
 				var text = [val];
 				if(!d) {text.push(_this.date);}
-				if(!m) {text.push(_this.options.i18n.months[_this.month]);}
+				if(!m) {text.push(_this.options.l10n.months[_this.month]);}
 				if(!y) {text.push(_this.year);}
 				_this.tooltip.html(text.join(' '));
 
@@ -418,13 +441,21 @@
 
 	// Datepicker constructor
 
-	function richDatepicker(input, options) {
+	function richDatepicker(input, options, cacheFlag) {
+
+		var cdays = days;
 
 		this.options = options || {};
+		this.options.l10n = this.options.l10n || {};
+		this.options.l10n.months = this.options.l10n.months || months;
 
-		this.options.i18n = this.options.i18n || {};
-		this.options.i18n.months = this.options.i18n.months || months;
-		this.options.i18n.days = this.options.i18n.days || days;
+		if (this.options.monday) {
+			cdays = days.slice(0);
+			cdays.push(cdays.shift(0))
+		}
+
+		this.options.l10n.days = this.options.l10n.days || cdays;
+		this.options.weekends = this.options.monday ? [5, 6] : [0, 6];
 
 		var position = this.options.position ? 'position-'+this.options.position : 'position-bottom';
 
@@ -434,9 +465,13 @@
 		this.month = currentMonth;
 		this.date = currentDate;
 
-		this.wrap = this.input.wrap('<div class="rich-datepicker-wrap '+position+'" />').parent().append(this.datepickerHTML());
+		if (cacheFlag || !cache) {
+			cache = this.datepickerHTML();
+		}
+
+		this.wrap = this.input.wrap('<div class="rich-datepicker-wrap '+position+'" />').parent().append(cache);
 		this.tooltip = this.wrap.find('.tooltip');
-		this.richDatepicker = this.wrap.find('.rich-datepicker');
+		this.richDatepicker = this.wrap.find('.rich-datepicker-body');
 
 	// calendar
 
@@ -498,14 +533,14 @@
 
 	// module ini
 
-	$.fn.richDatepicker = function(options) {
+	$.fn.richDatepicker = function(options, cache) {
 
 		options = options || {};
 
 		return this.each(function() {
 
 			var	$this = $(this),
-				datepicker = new richDatepicker($(this), options);
+				datepicker = new richDatepicker($(this), options, cache);
 
 			$this.data('date', datepicker);
 

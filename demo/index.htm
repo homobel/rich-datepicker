@@ -12,10 +12,11 @@
 		<script type="text/javascript">
 			(function($) {
 				$(function() {
-					$('.rich-datepicker-input').first().richDatepicker();
-					$('.rich-datepicker-input').last().richDatepicker({
+					$('.rich-datepicker').first().richDatepicker();
+					$('.rich-datepicker').last().richDatepicker({
 						position: 'top',
-						i18n: {
+						monday: true,
+						l10n: {
 							days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
 							months: [
 								'Январь',
@@ -32,7 +33,7 @@
 								'Декабрь'
 							]
 						}
-					});
+					}, true);
 				});
 			})(jQuery);
 		</script>
@@ -45,14 +46,15 @@
 			</div>
 		</header>
 		<div class="centriod">
-			<input class="rich-datepicker-input" type="text" />
+			<input class="rich-datepicker" type="text" />
 			<article>
 				<h2>Features</h2>
 				<ul>
-					<li>Infoscroller with  months &amp; years</li>
+					<li>Infoscroller for months &amp; years</li>
 					<li>Date autocomplete</li>
 					<li>CSS editable</li>
-					<li>Ready for i18n</li>
+					<li>Ready for l10n</li>
+					<li>Ability to change first day of the week</li>
 				</ul>
 				<h2>jQuery UI dependances</h2>
 				<ul>
@@ -62,49 +64,90 @@
 					<li>Core</li>
 				</ul>
 				<h2>Usage</h2>
-				<h3>Code in head</h3>
+				<h3>Code for head</h3>
 				<pre>
 					<code>
 	&lt;link rel="stylesheet" type="text/css" href="css/datapicker.css" /&gt;
 	&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
 	&lt;script type="text/javascript" src="js/jquery-ui.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="js/jquery.mousewheel.min.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="js/jquery.mousewheel.js"&gt;&lt;/script&gt;
 	&lt;script type="text/javascript" src="js/rich-datepicker.js"&gt;&lt;/script&gt;
 	&lt;script type="text/javascript"&gt;
 		(function($) {
 			$(function() {
 
-				$('.rich-datepicker-input').richDatepicker();
+				$('.rich-datepicker').richDatepicker();
 
 			});
 		})(jQuery);
 	&lt;/script&gt;
 					</code>
 				</pre>
-				<h3>Position</h3>
-				<p>There are 2 built in positions: bottom(default) and top. You can set your own properties via class and proper argument like this:</p>
+				<h3>Options</h3>
+				<h4>Position</h4>
+				<p>There are 2 built in positions: bottom(default) and top. You can set your own properties via class and proper argument:</p>
 				<pre>
 					<code>
 	// JS
-	$('.rich-datepicker-input').first().richDatepicker({position: 'abc'});
+	$('.rich-datepicker').richDatepicker({position: 'abc'});
 
 	// CSS
 	.position-abc .rich-datepicker {...}
 					</code>
 				</pre>
-				<h3>Methods</h3>
-				Date: <strong>7 February 2012</strong>
+				<h4>First day of week</h4>
+				<p>By default sunday is the first day of week. You can change this:</p>
 				<pre>
 					<code>
-	$('input').data('date').val(); // [7, 2, 2012]
-	$('input').data('date').textVal(); // "7 February 2012"
-	$('input').data('date').val(1,1,2011); // $('input').data('date').val(); -> [1, 1, 2011]
+	$('.rich-datepicker').richDatepicker({monday: true});
+					</code>
+				</pre>
+				<h4>l10n</h4>
+				<p>Localization should be done with taking 'monday' property into account.</p>
+				<pre>
+					<code>
+	$('.rich-datepicker').richDatepicker({
+		monday: true,
+		l10n: {
+			days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+			months: [
+				'Январь',
+				'Февраль',
+				'Март',
+				'Апрель',
+				'Май',
+				'Июнь',
+				'Июль',
+				'Август',
+				'Сентябрь',
+				'Октябрь',
+				'Ноябрь',
+				'Декабрь'
+			]
+		}
+	});
+					</code>
+				</pre>
+				<h3>Methods</h3>
+				Current date: <strong>7 February 2012</strong>
+				<pre>
+					<code>
+	$('.rich-datepicker').data('date').val(); // [7, 2, 2012]
+	$('.rich-datepicker').data('date').textVal(); // "7 February 2012"
+	$('.rich-datepicker').data('date').val(1,1,2011); // $('.rich-datepicker').data('date').val(); -> [1, 1, 2011]
 					</code>
 				</pre>
 				<h3>Events</h3>
-				Datapicker input emits 'datachanged' event each time day, month or year changed.
+				<p>Datapicker input emits 'datachanged' event each time day, month or year changed.</p>
+				<h3>Cache</h3>
+				<p>First call of init function generate html of date picker and cache it. This behavior assumes that you use one language per page. Set second argument to true to regenerate html.</p>
+				<pre>
+					<code>
+	$('.rich-datepicker').richDatepicker({ ... }, true);
+					</code>
+				</pre>
 			</article>
-			<input class="rich-datepicker-input top" type="text" />
+			<input class="rich-datepicker top" type="text" />
 		</div>
 	</body>
 </html>

@@ -68,16 +68,16 @@
 
 /* datepicker */
 
-.position-top .rich-datepicker {
+.position-top .rich-datepicker-body {
 	top: auto;
 	bottom: 100%;
 }
 
-.position-bottom .rich-datepicker {
+.position-bottom .rich-datepicker-body {
 	top: 100%;
 }
 
-.rich-datepicker {
+.rich-datepicker-body {
 	position: absolute;
 	left: -99999px;
 	width: 335px;
@@ -86,8 +86,8 @@
 	box-shadow: 3px 3px 15px rgba(0,0,0, .4);
 }
 
-.rich-datepicker ul,
-.rich-datepicker li {
+.rich-datepicker-body ul,
+.rich-datepicker-body li {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
@@ -97,12 +97,12 @@
 /* days line */
 
 
-.rich-datepicker .days {
+.rich-datepicker-body .days {
 	height: 21px;
 	padding-left: 4px;
 }
 
-.rich-datepicker .days li {
+.rich-datepicker-body .days li {
 	float: left;
 	width: 27px;
 	line-height: 21px;
@@ -110,7 +110,7 @@
 	font-weight: bold;
 }
 
-.rich-datepicker .rest-day {
+.rich-datepicker-body .rest-day {
 	color: #bbb;
 }
 
@@ -120,18 +120,18 @@
 
 /* calendar */
 
-.rich-datepicker .calendar {
+.rich-datepicker-body .calendar {
 	width: 197px;
 }
 
-.rich-datepicker .calendar .year-wrap {
+.rich-datepicker-body .calendar .year-wrap {
 	width: 100%;
 	position: absolute;
 	left: 0;
 	display: none;
 }
 
-.rich-datepicker .calendar .year-wrap strong {
+.rich-datepicker-body .calendar .year-wrap strong {
 	display: block;
 	height: 24px;
 	line-height: 24px;
@@ -139,17 +139,17 @@
 	cursor: default;
 }
 
-.rich-datepicker .calendar .month-wrap {
+.rich-datepicker-body .calendar .month-wrap {
 	height: 156px;
 }
 
-.rich-datepicker .calendar .month-wrap ul {
+.rich-datepicker-body .calendar .month-wrap ul {
 	overflow: hidden;
 	height: 132px;
 	padding-left: 4px;
 }
 
-.rich-datepicker .calendar .year-wrap li {
+.rich-datepicker-body .calendar .year-wrap li {
 	float: left;
 	width: 27px;
 	height: 22px;
@@ -157,11 +157,11 @@
 	text-align: center;
 }
 
-.rich-datepicker .day {
+.rich-datepicker-body .day {
 	cursor: pointer;
 }
 
-.rich-datepicker .day:hover {
+.rich-datepicker-body .day:hover {
 	background: #ffffff; /* Old browsers */
 	background: -moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
@@ -172,23 +172,31 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
 }
 
-.rich-datepicker .calendar .year-wrap .size-3 {
+.rich-datepicker-body .calendar .year-wrap .size-0 {
+	display: none;
+}
+
+.rich-datepicker-body .calendar .year-wrap .size-1 {
+	width: 27;
+}
+
+.rich-datepicker-body .calendar .year-wrap .size-2 {
 	width: 54px;
 }
 
-.rich-datepicker .calendar .year-wrap .size-4 {
+.rich-datepicker-body .calendar .year-wrap .size-3 {
 	width: 81px;
 }
 
-.rich-datepicker .calendar .year-wrap .size-5 {
+.rich-datepicker-body .calendar .year-wrap .size-4 {
 	width: 108px;
 }
 
-.rich-datepicker .calendar .year-wrap .size-6 {
+.rich-datepicker-body .calendar .year-wrap .size-5 {
 	width: 135px;
 }
 
-.rich-datepicker .calendar .year-wrap .size-7 {
+.rich-datepicker-body .calendar .year-wrap .size-6 {
 	width: 162px;
 }
 
@@ -196,13 +204,13 @@
 /* picker's column */
 
 
-.rich-datepicker .calendar {
+.rich-datepicker-body .calendar {
 	background: #fff;
 }
 
-.rich-datepicker .calendar,
-.rich-datepicker .month-picker,
-.rich-datepicker .year-picker {
+.rich-datepicker-body .calendar,
+.rich-datepicker-body .month-picker,
+.rich-datepicker-body .year-picker {
 	float: left;
 	height: 267px;
 	box-shadow: inset 1px 1px 3px #b1b1b1;
@@ -210,8 +218,8 @@
 	position: relative;
 }
 
-.rich-datepicker .month-picker,
-.rich-datepicker .year-picker {
+.rich-datepicker-body .month-picker,
+.rich-datepicker-body .year-picker {
 	width: 80px;
 	margin-left: -1px;
 	line-height: 22px;
@@ -220,24 +228,24 @@
 	cursor: pointer;
 }
 
-.rich-datepicker .month-picker ul,
-.rich-datepicker .year-picker ul {
+.rich-datepicker-body .month-picker ul,
+.rich-datepicker-body .year-picker ul {
 	padding-top: 1px;
 	position: relative;
 	z-index: 2;
 }
 
-.rich-datepicker .year-picker {
+.rich-datepicker-body .year-picker {
 	width: 60px;
 }
 
-.rich-datepicker .bg-area {
+.rich-datepicker-body .bg-area {
 	position: absolute;
 	box-shadow: 1px 1px 1px rgba(0,0,0, .2);
 	z-index: 1;
 }
 
-.rich-datepicker .draggable-area {
+.rich-datepicker-body .draggable-area {
 	position: absolute;
 	z-index: 3;
 	cursor: move;
@@ -245,53 +253,53 @@
 	text-indent: 0;
 }
 
-.rich-datepicker .month-picker .bg-area,
-.rich-datepicker .month-picker .draggable-area {
+.rich-datepicker-body .month-picker .bg-area,
+.rich-datepicker-body .month-picker .draggable-area {
 	width: 78px;
 	height: 40px;
 	margin: 1px;
 	left: 0;
 }
 
-.rich-datepicker .year-picker .bg-area,
-.rich-datepicker .year-picker .draggable-area {
+.rich-datepicker-body .year-picker .bg-area,
+.rich-datepicker-body .year-picker .draggable-area {
 	width: 58px;
 	height: 22px;
 	margin: 1px;
 	left: 0;
 }
 
-.rich-datepicker .year-picker li:nth-child(5),
-.rich-datepicker .month-picker li:nth-child(5),
-.rich-datepicker .year-picker li:nth-child(8),
-.rich-datepicker .month-picker li:nth-child(8) {
+.rich-datepicker-body .year-picker li:nth-child(5),
+.rich-datepicker-body .month-picker li:nth-child(5),
+.rich-datepicker-body .year-picker li:nth-child(8),
+.rich-datepicker-body .month-picker li:nth-child(8) {
 	color: #1a1a1a;
 }
 
-.rich-datepicker .year-picker li:nth-child(4),
-.rich-datepicker .month-picker li:nth-child(4),
-.rich-datepicker .year-picker li:nth-child(9),
-.rich-datepicker .month-picker li:nth-child(9) {
+.rich-datepicker-body .year-picker li:nth-child(4),
+.rich-datepicker-body .month-picker li:nth-child(4),
+.rich-datepicker-body .year-picker li:nth-child(9),
+.rich-datepicker-body .month-picker li:nth-child(9) {
 	color: #333333;
 }
 
-.rich-datepicker .year-picker li:nth-child(3),
-.rich-datepicker .month-picker li:nth-child(3),
-.rich-datepicker .year-picker li:nth-child(10),
-.rich-datepicker .month-picker li:nth-child(10) {
+.rich-datepicker-body .year-picker li:nth-child(3),
+.rich-datepicker-body .month-picker li:nth-child(3),
+.rich-datepicker-body .year-picker li:nth-child(10),
+.rich-datepicker-body .month-picker li:nth-child(10) {
 	color: #4d4d4d;
 }
 
-.rich-datepicker .year-picker li:nth-child(2),
-.rich-datepicker .month-picker li:nth-child(2),
-.rich-datepicker .year-picker li:nth-child(11),
-.rich-datepicker .month-picker li:nth-child(11) {
+.rich-datepicker-body .year-picker li:nth-child(2),
+.rich-datepicker-body .month-picker li:nth-child(2),
+.rich-datepicker-body .year-picker li:nth-child(11),
+.rich-datepicker-body .month-picker li:nth-child(11) {
 	color: #666666;
 }
 
-.rich-datepicker .year-picker li:nth-child(1),
-.rich-datepicker .month-picker li:nth-child(1),
-.rich-datepicker .year-picker li:nth-child(12),
-.rich-datepicker .month-picker li:nth-child(12) {
+.rich-datepicker-body .year-picker li:nth-child(1),
+.rich-datepicker-body .month-picker li:nth-child(1),
+.rich-datepicker-body .year-picker li:nth-child(12),
+.rich-datepicker-body .month-picker li:nth-child(12) {
 	color: #808080;
 }
